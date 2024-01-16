@@ -1,10 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+
+      localStorage.removeItem('token');
+
+      navigate('/');
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    }
+  };
+
   return (
     <div className="bg-gray-800 text-white h-screen w-1/5 p-4">
-      <h1 className="text-2xl font-bold mb-4">Sidebar</h1>
+      <h1 className="text-2xl font-bold mb-4">ADMINISTRAR</h1>
       <ul>
         <li className="mb-2">
           <Link to="/ShowUsers" className="hover:text-gray-300">
@@ -25,6 +38,11 @@ const Sidebar = () => {
           <Link to="/roles" className="hover:text-gray-300">
             Roles
           </Link>
+        </li>
+        <li className="mb-2">
+          <button className="bg-blue-500 text-white p-2 rounded-md mb-4" onClick={handleLogout}>
+            Logout
+          </button>
         </li>
       </ul>
     </div>

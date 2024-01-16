@@ -8,7 +8,8 @@ import UserDetails from './components/UserDetails';
 import Bitacora from './components/bitacora';
 import Roles from './components/Roles';
 import CreateRol from './components/CreateRol';
-
+import Paginas from './components/Paginas';
+import CreatePagina from './components/CreatePagina';
 
 function App() {
   return (
@@ -23,6 +24,10 @@ function App() {
           <Route path="/bitacora" element={<Bitacora />} />
           <Route path="/roles" element={<Roles />} />
           <Route path="/create-role" element={<CreateRol />} />
+          <Route path="/paginas" element={<Paginas/>} />
+          <Route path="/CreatePagina" element={<CreatePagina/>} />
+
+
         </Routes>
       </BrowserRouter>
     </div>

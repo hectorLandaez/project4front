@@ -13,7 +13,7 @@ const CreateRol = () => {
     try {
       await axios.post('http://127.0.0.1:8000/api/create-role', {
         rol: userRol,
-        estado: userPermisos, // Considerando que 'estado' es equivalente a 'Habilitado'
+        estado: userPermisos, 
       });
 
       navigate('/ShowUsers');
