@@ -72,7 +72,7 @@ const ShowUsers = () => {
             {users.map((user) => (
               <tr key={user.id}>
                 <td className="p-2">{user.id}</td>
-                <td className="p-2">{user.nombreDeUsuario}</td>
+                <td className="p-2">{user.email}</td>
                 <td className="p-2">{user.habilitado}</td>
                 <td className="p-2">{new Date(user.created_at).toLocaleDateString()}</td>
                 <td className="p-2">{new Date(user.updated_at).toLocaleDateString()}</td>
@@ -86,11 +86,11 @@ const ShowUsers = () => {
                       user.habilitado === "si" ? "bg-red-500" : "bg-green-500"
                     } text-white`}
                   >
-                    {user.habilitado === "habilitar" ? "deshabilitar" : "habilitar"}
+                    {user.habilitado === "si" ? "desactivar" : "activar"}
                   </button></td>
                 <td className="p-2">
                   <Link
-                    to={`/ShowUsers`}
+                    to={`/edit/${user.id}`}
                     className="bg-yellow-500 text-white py-1 px-2 rounded-md mr-2"
                   >
                     Edit

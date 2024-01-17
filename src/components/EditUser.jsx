@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const endpoint = "http://127.0.0.1:8000/api/usuarios/";
 
 const EditUser = () => {
-  const { idpersona } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [nombre, setNombre] = useState("");
@@ -14,28 +14,28 @@ const EditUser = () => {
   const [sApellido, setsegundoApellido] = useState("");
   const [email, setemail] = useState("");
 
-
+console.log(id)
   const update = async (e) => {
     e.preventDefault();
-    await axios.put(`${endpoint}${idpersona}`, {
+    await axios.put(`${endpoint}${id}`, {
       primernombre: nombre,
       primerapellido: apellido,
       segundonombre: sNombre,
       segundoapellido: sApellido,
     });
-    navigate(`/user-details/${idpersona}`)
+    navigate(`/ShowUsers`)
   };
 
   useEffect(() => {
     const getUserById = async () => {
-      const response = await axios.get(`${endpoint}${idpersona}`);
+      const response = await axios.get(`${endpoint}${id}`);
       setNombre(response.data.primernombre);
       setApellido(response.data.primerapellido);
       setsegundoNombre(response.data.segundonombre);
       setsegundoApellido(response.data.segundoapellido);
     };
     getUserById();
-  }, [idpersona]);
+  }, [id]);
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white border rounded-md shadow-md">
@@ -83,7 +83,7 @@ const EditUser = () => {
         <button
           type="button"
           className="bg-gray-300 text-gray-700 p-2 rounded-md"
-          onClick={() => navigate(`/user-details/${idpersona}`)}>
+          onClick={() => navigate(`/ShowUsers`)}>
           Back
         </button>
       </form>
