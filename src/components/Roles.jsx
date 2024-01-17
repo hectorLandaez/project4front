@@ -25,17 +25,13 @@ const Roles = () => {
       const response = await axios.put(`${endpoint}/cambiar-estado-rol/${id}`, {
         nuevoEstado: estadoActual === "activo" ? "inactivo" : "activo",
       });
-
-      getAllRoles();
-
-      console.log(`Estado del rol con ID ${id} cambiado exitosamente.`);
     } catch (error) {
-        console.error('Error cambiando estado del rol:', error);
-        if (error.response) {
-          console.error('Respuesta del servidor:', error.response.data);
-        }
+      console.error("Error cambiando estado del rol:", error);
+      if (error.response) {
+        console.error("Respuesta del servidor:", error.response.data);
       }
-    };
+    }
+  };
 
   return (
     <div className="flex">
@@ -62,8 +58,8 @@ const Roles = () => {
           </thead>
           <tbody>
             {roles.map((role) => (
-              <tr key={role.idrol} className="hover:bg-gray-100">
-                <td className="py-2 px-4 border-b">{role.idrol}</td>
+              <tr key={role.id} className="hover:bg-gray-100">
+                <td className="py-2 px-4 border-b">{role.id}</td>
                 <td className="py-2 px-4 border-b">{role.rol}</td>
                 <td className="py-2 px-4 border-b">{role.estado}</td>
                 <td className="py-2 px-4 border-b">
@@ -74,7 +70,11 @@ const Roles = () => {
                 </td>
                 <td className="py-2 px-4 border-b">
                   <button
-                    onClick={() => handleCambiarEstado(role.idrol, role.estado)}
+                    type="submit"
+                    onClick={async () => {
+                      await handleCambiarEstado(role.id, role.estado);
+                      window.location.reload();
+                    }}
                     className={`py-1 px-2 rounded-md ${
                       role.estado === "activo" ? "bg-red-500" : "bg-green-500"
                     } text-white`}

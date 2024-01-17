@@ -10,12 +10,14 @@ const ShowUsers = () => {
 
   useEffect(() => {
     getAllUsers();
+    
   }, []);
 
   const getAllUsers = async () => {
     try {
       const response = await axios.get(`${endpoint}/usuarios`);
       setUsers(response.data);
+
     } catch (error) {
       console.error("Error fetching users:", error);
     }
@@ -30,6 +32,18 @@ const ShowUsers = () => {
     }
   };
 
+  const handleCambiarEstado = async (id, estadoActual) => {
+    try {
+      const response = await axios.put(`${endpoint}/cambiar/estado/user/${id}`, {
+        nuevoEstado: estadoActual === "activo" ? "inactivo" : "activo",
+      });
+    } catch (error) {
+      console.error("Error cambiando estado del rol:", error);
+      if (error.response) {
+        console.error("Respuesta del servidor:", error.response.data);
+      }
+    }
+  };
   return (
     <div className="flex">
       <Sidebar />
@@ -56,22 +70,33 @@ const ShowUsers = () => {
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr key={user.idpersona}>
-                <td className="p-2">{user.idpersona}</td>
+              <tr key={user.id}>
+                <td className="p-2">{user.id}</td>
                 <td className="p-2">{user.nombreDeUsuario}</td>
                 <td className="p-2">{user.habilitado}</td>
                 <td className="p-2">{new Date(user.created_at).toLocaleDateString()}</td>
                 <td className="p-2">{new Date(user.updated_at).toLocaleDateString()}</td>
-                <td className="p-2"><button>habilitar</button></td>
+                <td className="p-2">                  <button
+                    type="submit"
+                    onClick={async () => {
+                      await handleCambiarEstado(user.id, user.habilitado);
+                      window.location.reload();
+                    }}
+                    className={`py-1 px-2 rounded-md ${
+                      user.habilitado === "si" ? "bg-red-500" : "bg-green-500"
+                    } text-white`}
+                  >
+                    {user.habilitado === "habilitar" ? "deshabilitar" : "habilitar"}
+                  </button></td>
                 <td className="p-2">
                   <Link
-                    to={`/edit/${user.idpersona}`}
+                    to={`/ShowUsers`}
                     className="bg-yellow-500 text-white py-1 px-2 rounded-md mr-2"
                   >
                     Edit
                   </Link>
                   <button
-                    onClick={() => deleteUser(user.idpersona)}
+                    onClick={() => deleteUser(user.id)}
                     className="bg-red-500 text-white py-1 px-2 rounded-md"
                   >
                     Delete

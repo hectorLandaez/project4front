@@ -10,6 +10,7 @@ import Roles from './components/Roles';
 import CreateRol from './components/CreateRol';
 import Paginas from './components/Paginas';
 import CreatePagina from './components/CreatePagina';
+import EditPagina from './components/editPaginas';
 
 function App() {
   return (
@@ -26,8 +27,7 @@ function App() {
           <Route path="/create-role" element={<CreateRol />} />
           <Route path="/paginas" element={<Paginas/>} />
           <Route path="/CreatePagina" element={<CreatePagina/>} />
-
-
+          <Route path="/EditPagina/:id" element={<EditPagina/>} />
         </Routes>
       </BrowserRouter>
     </div>

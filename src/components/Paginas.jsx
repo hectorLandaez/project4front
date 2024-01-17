@@ -55,21 +55,21 @@ const Paginas = () => {
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr key={user.idpersona}>
-                <td className="p-2">{user.idpersona}</td>
-                <td className="p-2">{user.nombreDeUsuario}</td>
-                <td className="p-2">{user.habilitado}</td>
+              <tr key={user.id}>
+                <td className="p-2">{user.id}</td>
+                <td className="p-2">{user.URL}</td>
+                <td className="p-2">{user.Name}</td>
+                <td className="p-2">{user.Descripcion}</td>
                 <td className="p-2">{new Date(user.created_at).toLocaleDateString()}</td>
-                <td className="p-2">{new Date(user.updated_at).toLocaleDateString()}</td>
                 <td className="p-2">
                   <Link
-                    to={`/edit/${user.idpersona}`}
+                    to={`/EditPagina/${user.id}`}
                     className="bg-yellow-500 text-white py-1 px-2 rounded-md mr-2"
                   >
                     Edit
                   </Link>
                   <button
-                    onClick={() => deleteUser(user.idpersona)}
+                    onClick={() => deleteUser(user.id)}
                     className="bg-red-500 text-white py-1 px-2 rounded-md"
                   >
                     Delete
