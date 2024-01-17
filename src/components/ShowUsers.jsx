@@ -58,7 +58,7 @@ const ShowUsers = () => {
         </div>
         <table className="table-auto w-full">
           <thead className="bg-primary text-black ">
-            <tr>
+            <tr className='hover:bg-gray-100'>
               <th className="p-2">ID</th>
               <th className="p-2">Email</th>
               <th className="p-2">Habilitado</th>

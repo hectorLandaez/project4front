@@ -65,7 +65,7 @@ const CreateUser = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-600">Rol</label>
+          <label className="block text-sm font-medium text-gray-600">Rol Number</label>
           <input
             value={userRol}
             onChange={(e) => setuserRol(e.target.value)}
@@ -82,6 +82,7 @@ const CreateUser = () => {
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>
+        
         <button type="submit" className="bg-blue-500 text-white p-2 rounded-md mr-2">
           Create
         </button>

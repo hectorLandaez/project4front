@@ -13,8 +13,9 @@ const EditUser = () => {
   const [sNombre, setsegundoNombre] = useState("");
   const [sApellido, setsegundoApellido] = useState("");
   const [email, setemail] = useState("");
+  const [userRol, setuserRol] = useState('');
 
-console.log(id)
+
   const update = async (e) => {
     e.preventDefault();
     await axios.put(`${endpoint}${id}`, {
@@ -37,10 +38,27 @@ console.log(id)
     getUserById();
   }, [id]);
 
+  /* const updater = async (e) => {
+    e.preventDefault();
+    await axios.put(`${endpoint}/usuarios/email${id}`, {
+      userRol: idrol,
+      
+    });
+    navigate(`/ShowUsers`)
+  };
+
+  useEffect(() => {
+    const getUserById = async () => {
+      const response = await axios.get(`${endpoint}/usuarios/email${id}`);
+      setuserRol(response.data.idrol);
+    };
+    getUserById();
+  }, [id]); */
+
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white border rounded-md shadow-md">
       <h3 className="text-2xl font-semibold mb-4">Editar Usuario</h3>
-      <form onSubmit={update}>
+      <form onSubmit={update /* && updater */}>
         <div className="mb-3">
           <label className="block text-sm font-medium text-gray-600">Primer Nombre</label>
           <input
@@ -77,6 +95,15 @@ console.log(id)
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>
+        {/* <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-600">Rol Number</label>
+          <input
+            value={userRol}
+            onChange={(e) => setuserRol(e.target.value)}
+            type="text"
+            className="mt-1 p-2 w-full border rounded-md"
+          />
+        </div> */}
         <button type="submit" className="bg-blue-500 text-white p-2 rounded-md mr-2">
           Update
         </button>

@@ -46,8 +46,8 @@ const CreateRol = () => {
     onChange={(e) => setuserPermisos(e.target.value)}
     className="mt-1 p-2 w-full border rounded-md"
   >
-    <option value="activar">Activo</option>
-    <option value="desactivar">Inactivo</option>
+    <option value="Activo">Activo</option>
+    <option value="Inactivo">Inactivo</option>
   </select>
 </div>
 
