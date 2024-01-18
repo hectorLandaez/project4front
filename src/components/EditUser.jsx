@@ -22,43 +22,33 @@ const EditUser = () => {
       primernombre: nombre,
       primerapellido: apellido,
       segundonombre: sNombre,
-      segundoapellido: sApellido,
+      segundoapellido: sApellido, 
+      idrol:userRol
     });
     navigate(`/ShowUsers`)
   };
 
   useEffect(() => {
-    const getUserById = async () => {
+    const getrolById = async () => {
       const response = await axios.get(`${endpoint}${id}`);
+      setuserRol(response.data.idrol); 
+    };
+    const getUserById = async () => {
+      const response = await axios.get(`${endpoint}email/${id}`)
       setNombre(response.data.primernombre);
       setApellido(response.data.primerapellido);
       setsegundoNombre(response.data.segundonombre);
       setsegundoApellido(response.data.segundoapellido);
-    };
+    }
     getUserById();
+    getrolById();
   }, [id]);
 
-  /* const updater = async (e) => {
-    e.preventDefault();
-    await axios.put(`${endpoint}/usuarios/email${id}`, {
-      userRol: idrol,
-      
-    });
-    navigate(`/ShowUsers`)
-  };
-
-  useEffect(() => {
-    const getUserById = async () => {
-      const response = await axios.get(`${endpoint}/usuarios/email${id}`);
-      setuserRol(response.data.idrol);
-    };
-    getUserById();
-  }, [id]); */
-
+  
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white border rounded-md shadow-md">
       <h3 className="text-2xl font-semibold mb-4">Editar Usuario</h3>
-      <form onSubmit={update /* && updater */}>
+      <form onSubmit={update}>
         <div className="mb-3">
           <label className="block text-sm font-medium text-gray-600">Primer Nombre</label>
           <input
@@ -95,7 +85,7 @@ const EditUser = () => {
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>
-        {/* <div className="mb-4">
+         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600">Rol Number</label>
           <input
             value={userRol}
@@ -103,7 +93,7 @@ const EditUser = () => {
             type="text"
             className="mt-1 p-2 w-full border rounded-md"
           />
-        </div> */}
+        </div> 
         <button type="submit" className="bg-blue-500 text-white p-2 rounded-md mr-2">
           Update
         </button>

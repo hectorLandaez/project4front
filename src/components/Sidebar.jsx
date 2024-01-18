@@ -16,7 +16,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="bg-gray-800 text-white h-screen w-1/5 p-4">
+    <div className="bg-gray-800 text-white h-screen w-1/5 p-4 ">
       <h1 className="text-2xl font-bold mb-4 mt-10">ADMINISTRAR</h1>
       <hr></hr>
       <ul className='mt-10'>
